@@ -14,6 +14,12 @@ class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) return res.json();
+    return Promise.reject(`Ошибка ${res.status}`);
+
+  }
+
   /**
    * Получает данные текущего пользователя
    * @returns {Promise} Промис с ответом сервера: объект текущего пользователя
@@ -25,13 +31,7 @@ class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -52,13 +52,7 @@ class Api {
         about: job
       })
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -76,13 +70,7 @@ class Api {
         avatar: link
       })
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -96,13 +84,7 @@ class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -123,13 +105,7 @@ class Api {
         link
       })
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -144,13 +120,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => {
-      if (res.ok) return Promise.resolve();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    });
+    .then(this._checkResponse);
   }
 
   /**
@@ -165,13 +135,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    })
+    .then(this._checkResponse)
     .then(res => {
       return res.likes;
     });
@@ -189,13 +153,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json()
-      .then(res => {
-        throw new Error(res.message);
-      });
-    })
+    .then(this._checkResponse)
     .then(res => {
       return res.likes;
     });
