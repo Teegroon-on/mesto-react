@@ -1,60 +1,55 @@
 import React from "react";
-import api from "../utils/api";
+
 import Card from "./Card";
-import defaultAvatar from '../images/user-avatar_default.svg';
+import defaultAvatar from "../images/user-avatar_default.svg";
 
-function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
-  const [userAvatar, setUserAvatar] = React.useState(defaultAvatar);
-  const [userName, setUserName] = React.useState('. . .');
-  const [userDescription, setUserDescription ] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api.getUserInfo()
-      .then(res => {
-        setUserAvatar(res.avatar);
-        setUserName(res.name);
-        setUserDescription(res.about);
-      })
-      .catch(err => console.error(err));
-
-    api.getInitialCards()
-      .then(res => {
-        setCards(res);
-      })
-      .catch(err => console.error(err));
-  }, []);
+function Main({
+                onEditAvatar,
+                onEditProfile,
+                onAddPlace,
+                onCardClick,
+                cards,
+                onCardLike,
+                onCardDelete,
+              }) {
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main>
       <section className="profile content__element">
         <div className="profile__avatar">
           <img
-            src={userAvatar}
+            src={currentUser.avatar ?? defaultAvatar}
             alt="Фотография пользователя"
-            className="profile__avatar-image" />
-          <button className="profile__avatar-button"
+            className="profile__avatar-image"
+          />
+          <button
+            className="profile__avatar-button"
             type="button"
             aria-label="Обновить аватар"
-            onClick={onEditAvatar}></button>
+            onClick={onEditAvatar}
+          ></button>
         </div>
         <div className="profile__info">
           <div className="profile__name-block">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name ?? ". . ."}</h1>
             <button
               type="button"
               className="profile__button profile__button_type_edit"
               aria-label="Редактировать профиль"
-              onClick={onEditProfile}></button>
+              onClick={onEditProfile}
+            ></button>
           </div>
-          <p className="profile__job">{userDescription}</p>
+          <p className="profile__job">{currentUser.about}</p>
         </div>
         <button
           type="button"
           className="profile__button profile__button_type_add"
           aria-label="Добавить фотографию"
-          onClick={onAddPlace}></button>
+          onClick={onAddPlace}
+        ></button>
       </section>
 
       <section className="cards content__element" aria-label="Фотографии">
@@ -62,8 +57,10 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
           <Card
             card={card}
             key={card._id}
-            onCardClick = {onCardClick}
-            />
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
+          />
         ))}
       </section>
     </main>

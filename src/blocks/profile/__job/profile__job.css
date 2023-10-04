@@ -1,11 +1,9 @@
 .profile__job {
-  margin: 0; /* Сброс стандартного стиля */
-  /* Параметры шрифта */
+  margin: 0;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.22;
-  /* Запрет переноса и переполнения текста */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

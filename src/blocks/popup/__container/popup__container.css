@@ -1,10 +1,7 @@
 .popup__container {
-  /* Относительное позиционирование для кнопки закрытия */
   position: relative;
-  /* Предельные размеры по макету */
   max-width: 430px;
   box-sizing: border-box;
-  /* Оформление */
   background-color: #fff;
   border-radius: 10px;
   color: #000;

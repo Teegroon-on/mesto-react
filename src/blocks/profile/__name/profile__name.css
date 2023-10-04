@@ -1,11 +1,9 @@
 .profile__name {
-  margin: 0; /* Сброс стандартных стилей */
-  /* Параметры шрифта */
+  margin: 0;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
-  /* Запрет переноса и переполнения текста */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

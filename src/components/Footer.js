@@ -4,7 +4,7 @@ function Footer() {
 
   return (
     <footer className="footer content__element">
-      <p className="footer__copyright">&copy;&nbsp;{currentYear <= 2022 ? '2022' : `2022&ndash;${currentYear}`} Студенты Яндекс.Практикума</p>
+      <p className="footer__copyright">&copy;&nbsp;{currentYear <= 2023 ? '2023' : `2023&ndash;${currentYear}`} Студенты Яндекс.Практикума</p>
     </footer>
   );
 }

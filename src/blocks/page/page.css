@@ -1,6 +1,4 @@
-/* Общий блок для всего содержимого */
 .page {
-  /* Шрифт для всей страницы */
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -8,7 +6,6 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  /* Цвета страницы */
   background-color: #000;
   color: #fff;
 }

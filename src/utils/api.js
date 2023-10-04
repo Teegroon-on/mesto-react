@@ -41,15 +41,15 @@ class Api {
    * - job - профессия пользователя
    * @returns {Promise} Промис с ответом сервера: обновленный объект пользователя
    */
-  setUserInfo({name, job}) {
+  setUserInfo({name, about}) {
     const url = `${this._baseUrl}/users/me`;
-
+    console.log({name, about})
     return fetch(url, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name,
-        about: job
+        about
       })
     })
     .then(this._checkResponse);
