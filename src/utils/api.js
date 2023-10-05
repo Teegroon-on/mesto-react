@@ -136,9 +136,6 @@ class Api {
       headers: this._headers
     })
     .then(this._checkResponse)
-    .then(res => {
-      return res.likes;
-    });
   }
 
   /**
@@ -154,9 +151,6 @@ class Api {
       headers: this._headers
     })
     .then(this._checkResponse)
-    .then(res => {
-      return res.likes;
-    });
   }
 
   /**
